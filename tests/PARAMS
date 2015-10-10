@@ -1,0 +1,34 @@
+Sig		Sig.out
+Gf		Gf.out
+Delta		Delta.inp
+cix		12actqmc.cix
+
+U		0.0	      # Coulomb repulsion (F0)
+mu  		7.8  	      # QMC chemical potential
+beta  		100.0	      # Inverse temperature
+
+M	   	200000000     # Total number of Monte Carlo steps
+warmup     	30000000      # Warmup number of QMC steps
+tsample	   	1000  	      # How often to record measurements
+SampleGtau  	1000  	      # How often to update G(tau)
+GlobalFlip 	1000000000    # How often to try a global flip
+CleanUpdate 	1000000       # How often to make clean update
+Ncout  	   	1000000	      # How often to print out info
+Naver	   	1000000000    # How often to print out debug info
+
+Nmax  		2000  	      # Maximum perturbation order allowed
+Ntau  		1000  	      # Number of imaginary time points (only for debugging)
+nom  		100  	      # Number of Matsubara frequency points sampled
+aom  		7  	      # Number of frequency points used to determine the value of sigma at nom
+sderiv  	0.02  	      # Maximum derivative mismatch accepted for tail concatenation
+
+FastTrace  	0  	      # Speeds up code for full-U calculation
+LazyTrace  	0  	      # Speeds up code for full-U calculation
+PChangeOrder  	0.9  	      # Ratio between trial steps: add-remove-a-kink / move-a-kink
+
+minM  		1e-10  	      # The smallest allowed value for the atomic trace
+minD  		1e-10  	      # The smallest allowed value for the determinant
+Ncorrect	-1  	      # Which baths should not be corrected
+
+fastFilesystem  1
+Segment         2
