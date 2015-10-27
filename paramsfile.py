@@ -35,24 +35,25 @@ class ParamsFile(object):
             ('fastFilesystem', 0,           int,   "Whether to write out Gaver and Delta.tau"),
             ]
 
+        #create default attributes
         for (name, default, mytype, doc) in self._fields:
-            fget = lambda self: getattr(self, '_' + name)
-            def fset(self, value):
-                assert(type(value) == mytype)
-                setattr(self, '_' + name, value)
-            setattr(self.__class__, name, property(fget, fset)) # create the property
-            setattr(self, '_' + name, default) # create local var to hold value
+            setattr(self, name, default)
 
     def readstream(self, stream):
+        #remove all white space from a line
         lines = [line.strip() for line in stream.readlines()]
+        #ignore lines that are commented out and empty lines
         lines = [line for line in lines if not line.startswith('#') and line != '']
+
+        #output the lines from stream via key and value
         for line in lines:
+            print (len(lines))
             record = line.split()
-            print(record)
             name = record[0]
             value = record[1]
-            mytype = type(getattr(self, '_' + name))
-            setattr(self, '_' + name, mytype(value))
+            mytype = type(getattr(self, name))
+            setattr(self, name, mytype(value))
+            print (record[0],record[1])
 
     def read(self, filename = None):
         if not filename:
@@ -62,7 +63,7 @@ class ParamsFile(object):
 
     def writestream(self, stream):
         for (name, default, mytype, doc) in self._fields:
-            stream.write("{:15s} {:<15} # {}\n".format(name, getattr(self, '_' + name), doc))
+            stream.write("{:15s} {:<15} # {}\n".format(name, getattr(self,name), doc))
 
     def write(self, filename = None):
         if not filename:
