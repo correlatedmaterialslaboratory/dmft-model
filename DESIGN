@@ -1,0 +1,47 @@
+Purpose / Scope
+
+A lightweight codebase for performing DMFT calculations on model systems.
+Included should be a CTQMC solver and a user-friendly interface for generating
+the local hamiltonian.
+
+
+User Experience
+
+The software will primarily be targeted for use on the command line, executed
+via a single call:
+
+ > dmft.py [CONFIG_FILE]
+
+For an end-user, the main interface will be a single configuration file which
+specifies
+ - Bandstructure
+ - Local hamiltonian
+ - Embedding/projection scheme
+ - Numerical parameters for the tight binding code and DMFT
+In more complex systems, we want to provide the option for the user to provide
+the band structure and local hamiltonian via supplementary input files in a
+to-be-determined format.
+
+Currently, parallelization is only implemented for Kristjan's CTQMC solver. The
+user is responsible for interfacing to queueing systems (if any). Also,
+currently we do not provide any mechanism for the user to specify the local
+hamiltonian and assume the user has created the necessary CIX file for the
+ctqmc solver.
+
+
+Library Backend
+
+Much of the functionality (representation of green's functions, summation over
+k-space, basis analysis such as computation of densities) should exist in a
+library which can easily be imported as a python module for inclusion in
+user-written code.
+
+
+Code Ownership / Hosting
+
+A clean, succinct landing page which clearly describes the purpose and
+capabilities of the code should be the first impression a potential new user
+experiences. The page will be hosted via github and should include example use
+cases to engage the user, a simple tutorial, and code documentation. The code
+repository will be developed by interested parties and will also be hosted on
+github.
